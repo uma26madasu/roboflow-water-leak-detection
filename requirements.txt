@@ -1,0 +1,22 @@
+# Roboflow Water Leak Detection - Dependencies
+# Compatible with Python 3.11+
+
+# Core computer vision
+roboflow==1.2.9
+
+# API and web requests  
+requests==2.32.5
+
+# Image processing
+pillow==11.3.0
+
+# Data processing (optional)
+numpy==2.3.3
+pandas==2.2.0
+
+# Development and testing (optional)
+pytest==7.4.0
+pytest-asyncio==0.23.0
+
+# Documentation (optional)
+markdown==3.5.1
