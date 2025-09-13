@@ -197,9 +197,9 @@ This is a demonstration project for Roboflow application purposes. For productio
 
 ## Contact
 
-Built by Uma Maheswararao Madasu as part of Roboflow Former Founder application process.
+Built by Uma Maheswararao Madasu.
 
-**Key Achievement**: Zero to production-ready computer vision integration in 4 days, demonstrating rapid learning, enterprise thinking, and practical execution.
+**Key Achievement**: Zero to production-ready computer vision integration in 2 days, demonstrating rapid learning, enterprise thinking, and practical execution.
 
 ---
 
