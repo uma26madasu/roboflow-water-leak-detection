@@ -1,0 +1,93 @@
+"""
+Configuration settings for Roboflow Water Leak Detection System
+"""
+
+# Roboflow Model Configuration
+ROBOFLOW_CONFIG = {
+    "api_key": "your_roboflow_api_key_here",  # Replace with your actual API key
+    "workspace": "water-treatment-equipment-status-detection",
+    "project": "equipment-status-monitor-12qyy", 
+    "version": 3,
+    "confidence_threshold": 40,
+    "overlap_threshold": 30
+}
+
+# ChainSync Integration Configuration
+CHAINSYNC_CONFIG = {
+    "base_url": "http://localhost:8081/api",
+    "timeout": 30,
+    "alert_endpoint": "/environmental-emergency-alerts",
+    "emergency_endpoint": "/emergency",
+    "facility_endpoint": "/environmental/{facilityId}"
+}
+
+# Facility Configuration
+FACILITIES = {
+    "water-treatment-1": {
+        "name": "Primary Water Treatment Plant",
+        "location": "Atlanta, GA",
+        "capacity": "50M gallons/day",
+        "critical_areas": ["pump_room", "filtration", "chlorination"],
+        "estimated_population": 125000
+    },
+    "water-treatment-2": {
+        "name": "Secondary Treatment Facility",
+        "location": "Atlanta, GA", 
+        "capacity": "25M gallons/day",
+        "critical_areas": ["intake", "settling", "distribution"],
+        "estimated_population": 50000
+    }
+}
+
+# Detection Configuration
+DETECTION_CONFIG = {
+    "leak_classes": ["leaking pump", "water leak", "pump leak"],
+    "normal_classes": ["normal pump", "normal equipment", "dry pump"],
+    "max_image_size_mb": 5,
+    "max_image_dimension": 1024,
+    "supported_formats": [".jpg", ".jpeg", ".png", ".bmp"]
+}
+
+# Alert Severity Configuration
+SEVERITY_CONFIG = {
+    "risk_thresholds": {
+        "low": {"min_score": 1, "max_score": 3},
+        "medium": {"min_score": 4, "max_score": 6}, 
+        "high": {"min_score": 7, "max_score": 8},
+        "critical": {"min_score": 9, "max_score": 10}
+    },
+    "response_times": {
+        "low": "2 hours",
+        "medium": "1 hour", 
+        "high": "30 minutes",
+        "critical": "15 minutes"
+    },
+    "cost_per_leak": 25000,  # USD
+    "water_loss_per_leak": 5000  # gallons/hour
+}
+
+# Logging Configuration
+LOGGING_CONFIG = {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file_path": "logs/leak_detection.log"
+}
+
+def get_risk_level(score):
+    """Calculate risk level based on score"""
+    for level, thresholds in SEVERITY_CONFIG["risk_thresholds"].items():
+        if thresholds["min_score"] <= score <= thresholds["max_score"]:
+            return level.upper()
+    return "UNKNOWN"
+
+def get_response_time(risk_level):
+    """Get expected response time for risk level"""
+    return SEVERITY_CONFIG["response_times"].get(risk_level.lower(), "Unknown")
+
+def calculate_business_impact(leak_count):
+    """Calculate estimated business impact"""
+    return {
+        "estimated_cost_savings": leak_count * SEVERITY_CONFIG["cost_per_leak"],
+        "water_saved_per_hour": leak_count * SEVERITY_CONFIG["water_loss_per_leak"],
+        "total_annual_savings": leak_count * SEVERITY_CONFIG["cost_per_leak"] * 4  # Assume 4 major leaks prevented per year
+    }
