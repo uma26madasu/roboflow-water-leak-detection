@@ -2,7 +2,7 @@
 
 **Computer Vision + Enterprise Integration Demo**
 
-A real-world application demonstrating automated water leak detection using Roboflow computer vision integrated with ChainSync environmental monitoring platform.
+A real-world application demonstrating automated water leak detection using Roboflow computer vision integrated with ChainSync environmental monitoring platform.This project would not be possible without Roboflow’s model training and deployment tools, which enabled me to go from zero computer vision experience to a working leak detection system in just 2 days
 
 ## Project Overview
 
@@ -177,7 +177,7 @@ This project demonstrates rapid learning and execution:
 ## Configuration Details
 
 ### Roboflow Model Training
-- **Dataset**: 30 manually annotated pump images
+- **Dataset**: 50 manually annotated pump images
 - **Classes**: `leaking pump`, `normal pump`
 - **Augmentations**: Default Roboflow preprocessing
 - **Model Type**: Object detection (YOLOv8-based)
